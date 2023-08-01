@@ -1,20 +1,31 @@
+import { StyleSheet, View } from "react-native";
+import BinaryTree from "./components/tree/BinaryTree";
+import BackButton from "./components/ui/BackButton";
+import { useRef } from "react";
+import GlobalColor from "./colors/GlobalColors";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  const binaryTreeRef = useRef();
+
+  function handleBackButtonPressed() {
+    binaryTreeRef.current.backButtonHandler();
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Test!!!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style="light" />
+      <View style={styles.container}>
+        <BinaryTree ref={binaryTreeRef} />
+        <BackButton onPress={handleBackButtonPressed} />
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#242424",
   },
 });
